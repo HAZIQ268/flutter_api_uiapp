@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uitask/firebase_options.dart';
 import 'package:uitask/home.dart';
-import 'package:uitask/login.dart';
+import 'package:uitask/register.dart';
 
 class uiapp extends StatefulWidget {
   const uiapp({super.key});
@@ -30,7 +30,7 @@ class uiappState extends State<uiapp> {
         initialRoute: '/',
         routes: {
           '/': (context) => homescreen(),
-          '/login': (context) => login(),
+          '/register': (context) => register(),
         });
   }
 }
