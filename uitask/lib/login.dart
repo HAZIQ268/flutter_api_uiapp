@@ -1,14 +1,38 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class login extends StatefulWidget {
-  const login({super.key});
+  login({super.key});
 
   @override
   State<login> createState() => _loginState();
 }
 
 class _loginState extends State<login> {
+  final TextEditingController name = new TextEditingController();
+  final TextEditingController email = new TextEditingController();
+  final TextEditingController password = new TextEditingController();
+
+  CollectionReference db =
+      FirebaseFirestore.instance.collection('flutterfirstdb');
+
+  void add_data() async {
+    final user = {
+      'name': name.text,
+      'email': email.text,
+      'password': password.text
+    };
+    await db.add(user);
+
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text('User Register Successfully 😊')));
+
+    name.clear();
+    email.clear();
+    password.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +49,7 @@ class _loginState extends State<login> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Login Your Account',
+              'Register Account',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -35,7 +59,31 @@ class _loginState extends State<login> {
             const SizedBox(height: 30),
             Container(
               width: 300,
-              child: const TextField(
+              child: TextField(
+                controller: name,
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    FontAwesomeIcons.user,
+                    color: Colors.amber,
+                    size: 18,
+                  ),
+                  labelText: 'Name',
+                  labelStyle: TextStyle(color: Colors.white70),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 30),
+            Container(
+              width: 300,
+              child: TextField(
+                controller: email,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   prefixIcon: Icon(
@@ -57,7 +105,8 @@ class _loginState extends State<login> {
             const SizedBox(height: 20),
             Container(
               width: 300,
-              child: const TextField(
+              child: TextField(
+                controller: password,
                 obscureText: true,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
@@ -86,10 +135,10 @@ class _loginState extends State<login> {
                   padding: const EdgeInsets.all(12),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/login');
+                  add_data();
                 },
                 child: const Text(
-                  'Login',
+                  'Register',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.black,
