@@ -126,7 +126,7 @@ class _registerState extends State<register> {
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 30),
             Container(
               width: 200,
               child: ElevatedButton(
@@ -146,6 +146,28 @@ class _registerState extends State<register> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(height: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  child: Text(
+                    'Already have an account?',
+                    style: TextStyle(color: Color.fromARGB(255, 148, 143, 143)),
+                  ),
+                ),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/login');
+                    },
+                    child: Text(
+                      'login',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                      ),
+                    ))
+              ],
             ),
           ],
         ),
