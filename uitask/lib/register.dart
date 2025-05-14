@@ -56,7 +56,7 @@ class _registerState extends State<register> {
                 color: Colors.white,
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 30),
             Container(
               width: 300,
               child: TextField(
@@ -79,7 +79,7 @@ class _registerState extends State<register> {
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 30),
             Container(
               width: 300,
               child: TextField(
@@ -102,7 +102,7 @@ class _registerState extends State<register> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             Container(
               width: 300,
               child: TextField(
