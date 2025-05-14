@@ -10,7 +10,6 @@ class register extends StatefulWidget {
 }
 
 class _registerState extends State<register> {
-
   final TextEditingController name = new TextEditingController();
   final TextEditingController email = new TextEditingController();
   final TextEditingController password = new TextEditingController();
@@ -138,7 +137,7 @@ class _registerState extends State<register> {
                 onPressed: () {
                   add_data();
                 },
-                child: const Text(
+                child: Text(
                   'Register',
                   style: TextStyle(
                     fontSize: 16,
