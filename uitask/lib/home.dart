@@ -48,7 +48,7 @@ class _homescreenState extends State<homescreen> {
                     fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 221, 217, 205),
@@ -64,6 +64,7 @@ class _homescreenState extends State<homescreen> {
                     fontWeight: FontWeight.bold),
               ),
             ),
+            SizedBox(height: 10),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 35, 85, 24),

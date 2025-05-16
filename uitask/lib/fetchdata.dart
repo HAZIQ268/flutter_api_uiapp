@@ -31,14 +31,18 @@ class _FetchdataState extends State<Fetchdata> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.black,
         body: Container(
-      child: Column(
-        children: [
-          Text('Data List'),
-          ...result.map((data) => card(data)).toList(),
-        ],
-      ),
-    ));
+          child: Column(
+            children: [
+              Text(
+                'Data List',
+                style: TextStyle(color: Colors.white, fontSize: 30),
+              ),
+              ...result.map((data) => card(data)).toList(),
+            ],
+          ),
+        ));
   }
 
   Widget card(Map<String, dynamic> data) {
