@@ -35,10 +35,12 @@ class _FetchdataState extends State<Fetchdata> {
         body: Container(
           child: Column(
             children: [
+              SizedBox(height: 10),
               Text(
                 'Data List',
                 style: TextStyle(color: Colors.white, fontSize: 30),
               ),
+              SizedBox(height: 10),
               ...result.map((data) => card(data)).toList(),
             ],
           ),
