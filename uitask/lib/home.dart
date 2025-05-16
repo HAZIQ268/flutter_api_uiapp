@@ -64,6 +64,21 @@ class _homescreenState extends State<homescreen> {
                     fontWeight: FontWeight.bold),
               ),
             ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 35, 85, 24),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/fetchdata');
+              },
+              child: Text(
+                'Check Data',
+                style: TextStyle(
+                    fontSize: 16,
+                    color: const Color.fromARGB(255, 212, 198, 198),
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:uitask/fetchdata.dart';
 import 'package:uitask/firebase_options.dart';
 import 'package:uitask/home.dart';
 import 'package:uitask/login.dart';
@@ -33,6 +34,7 @@ class uiappState extends State<uiapp> {
           '/': (context) => homescreen(),
           '/register': (context) => register(),
           '/login': (context) => login(),
+          '/fetchdata': (context) => Fetchdata(),
         });
   }
 }
