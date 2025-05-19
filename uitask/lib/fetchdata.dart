@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Fetchdata extends StatefulWidget {
   const Fetchdata({super.key});
@@ -32,13 +33,22 @@ class _FetchdataState extends State<Fetchdata> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
+          appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/');
+            },
+            icon: Icon(FontAwesomeIcons.arrowLeft, color: Colors.white)),
+      ),
         body: Container(
           child: Column(
             children: [
               SizedBox(height: 10),
-              Text(
-                'Data List',
-                style: TextStyle(color: Colors.white, fontSize: 30),
+              Center(
+                child: Text(
+                  'Data List',
+                  style: TextStyle(color: Colors.white, fontSize: 30),
+                ),
               ),
               SizedBox(height: 10),
               ...result.map((data) => card(data)).toList(),
@@ -48,10 +58,12 @@ class _FetchdataState extends State<Fetchdata> {
   }
 
   Widget card(Map<String, dynamic> data) {
-    return Card(
-      child: ListTile(
-        title: Text(data['name'] ?? 'no name'),
-        subtitle: Text('${data['email']} \n Password:${data['password']}'),
+    return Container(
+      child: Card(
+        child: ListTile(
+          title: Text(data['name'] ?? 'no name'),
+          subtitle: Text('${data['email']} \n Password:${data['password']}'),
+        ),
       ),
     );
   }

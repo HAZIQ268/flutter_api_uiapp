@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -14,23 +15,29 @@ class _registerState extends State<register> {
   final TextEditingController email = new TextEditingController();
   final TextEditingController password = new TextEditingController();
 
-  CollectionReference db =
-      FirebaseFirestore.instance.collection('flutterfirstdb');
-
   void add_data() async {
-    final user = {
-      'name': name.text,
-      'email': email.text,
-      'password': password.text
-    };
-    await db.add(user);
 
+try{
+      UserCredential users = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email.text, password: password.text);
+    
+    await FirebaseFirestore.instance.collection('flutterfirstdb').doc(users.user!.uid).set(
+      {
+        'id': users.user!.uid,
+        'name': name.text,
+        'email': email.text,
+        'password': password.text,
+      }
+    );
+    
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text('User Register Successfully 😊')));
 
-    name.clear();
-    email.clear();
-    password.clear();
+}
+catch(e){
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text('Error $e')));
+
+}
   }
 
   @override
