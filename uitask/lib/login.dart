@@ -1,30 +1,60 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class login extends StatefulWidget {
-  login({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<login> createState() => _loginState();
+  State<Login> createState() => _LoginState();
 }
 
-class _loginState extends State<login> {
+class _LoginState extends State<Login> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  bool obscurePassword = true;
+
+  void _loginpg() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+
+      UserCredential users = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: emailController.text.trim(),
+              password: passwordController.text.trim());
+
+      final userEmail = users.user!.email;
+      prefs.setString('email', userEmail!);
+
+      Navigator.pushNamed(context, '/welcomescreen');
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/');
-            },
-            icon: Icon(FontAwesomeIcons.arrowLeft, color: Colors.white)),
+          onPressed: () {
+            Navigator.pushNamed(context, '/');
+          },
+          icon: const Icon(FontAwesomeIcons.arrowLeft, color: Colors.white),
+        ),
+        backgroundColor: Colors.black,
+        elevation: 0,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Login to your Account',
               style: TextStyle(
                 fontSize: 24,
@@ -32,13 +62,13 @@ class _loginState extends State<login> {
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 30),
-            SizedBox(height: 30),
-            Container(
+            const SizedBox(height: 30),
+            SizedBox(
               width: 300,
               child: TextField(
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
+                controller: emailController,
+                style: const TextStyle(color: Colors.white),
+                decoration: const InputDecoration(
                   prefixIcon: Icon(
                     FontAwesomeIcons.envelope,
                     color: Colors.amber,
@@ -55,13 +85,14 @@ class _loginState extends State<login> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            Container(
+            const SizedBox(height: 20),
+            SizedBox(
               width: 300,
               child: TextField(
-                obscureText: true,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
+                controller: passwordController,
+                obscureText: obscurePassword,
+                style: const TextStyle(color: Colors.white),
+                decoration: const InputDecoration(
                   prefixIcon: Icon(
                     FontAwesomeIcons.lock,
                     color: Colors.amber,
@@ -78,15 +109,15 @@ class _loginState extends State<login> {
                 ),
               ),
             ),
-            SizedBox(height: 30),
-            Container(
+            const SizedBox(height: 30),
+            SizedBox(
               width: 200,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber,
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                 ),
-                onPressed: () {},
+                onPressed: _loginpg,
                 child: Text(
                   'Login',
                   style: TextStyle(
