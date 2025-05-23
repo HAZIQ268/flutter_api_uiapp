@@ -166,7 +166,7 @@ catch(e){
                 ),
                 TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/login');
+                      Navigator.pushNamed(context, 'login');
                     },
                     child: Text(
                       'login',

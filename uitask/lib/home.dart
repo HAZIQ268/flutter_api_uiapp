@@ -38,7 +38,7 @@ class _homescreenState extends State<homescreen> {
                 backgroundColor: Colors.amber,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/register');
+                Navigator.pushNamed(context, 'register');
               },
               child: Text(
                 'Get Started',
@@ -54,7 +54,7 @@ class _homescreenState extends State<homescreen> {
                 backgroundColor: const Color.fromARGB(255, 221, 217, 205),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/login');
+                Navigator.pushNamed(context, 'login');
               },
               child: Text(
                 'Login',
@@ -70,7 +70,7 @@ class _homescreenState extends State<homescreen> {
                 backgroundColor: const Color.fromARGB(255, 35, 85, 24),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/fetchdata');
+                Navigator.pushNamed(context, 'fetchdata');
               },
               child: Text(
                 'Check Data',

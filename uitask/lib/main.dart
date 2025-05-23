@@ -33,10 +33,10 @@ class uiappState extends State<uiapp> {
         initialRoute: '/',
         routes: {
           '/': (context) => homescreen(),
-          '/register': (context) => register(),
-          '/login': (context) => Login(),
-          '/fetchdata': (context) => Fetchdata(),
-          '/welcomescreen': (context) => welcomescreen(),
+          'register': (context) => register(),
+          'login': (context) => Login(),
+          'fetchdata': (context) => Fetchdata(),
+          'welcomescreen': (context) => welcomescreen(),
         });
   }
 }

@@ -33,7 +33,9 @@ void initState(){
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        leading: Icon(FontAwesomeIcons.bookBookmark),
+        leading: TextButton(onPressed: (){
+          Navigator.pushNamed(context, '/');
+        }, child: Icon(FontAwesomeIcons.arrowLeft,color: Colors.white,)),
         title: Text(
           'Uiapp',
           style: TextStyle(

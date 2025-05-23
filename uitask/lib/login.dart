@@ -28,7 +28,7 @@ class _LoginState extends State<Login> {
       final userEmail = users.user!.email;
       prefs.setString('email', userEmail!);
 
-      Navigator.pushNamed(context, '/welcomescreen');
+      Navigator.pushNamed(context, 'welcomescreen');
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: $e')),
